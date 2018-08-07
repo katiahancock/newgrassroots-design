@@ -1,5 +1,5 @@
-html {
-  background: image(
-    "https://newgrassroots.com/wp-content/themes/cosmic_bones/library/images/ngr-home-background.jpg"
-  );
+body {
+  background-image: url("https://newgrassroots.com/wp-content/themes/cosmic_bones/library/images/site-logo.png");
+  background-repeat: no-repeat;
+  background-color: #eee;
 }
