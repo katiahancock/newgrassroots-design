@@ -6,17 +6,7 @@ function getAllBills() {
   ).then(response => {
     return response.json();
   });
-  // .then(function (allBills) {
-  //   console.log(`Got the bills: ${allBills}`)
-  //   currentSessionBills = allBills;
-  //   return currentSessionBills;
-  // })
-  // .catch(function (error) {
-  //   console.error('Yikes! I should handle this better:\n', error);
-  // });
 }
-
-// Modify displayResults function to create new HTML element for each item in the results array
 
 function displayResults(someResults) {
   let billMatch = document.getElementById("billDisplay");
@@ -41,16 +31,16 @@ function displayResults(someResults) {
   console.log(results);
 }
 
-document.getElementById("submitButton").addEventListener("click", event => {
+function search() {
   getAllBills().then(currentSessionBills => {
     document.getElementById("billDisplay").textContent = "";
 
     // fuse.js specs
     const options = {
       shouldSort: true,
-      tokenize: true,
+      // tokenize: true,
       distance: 50,
-      threshold: 0.5,
+      threshold: 0.4,
       location: 0,
       minMatchCharLength: 1,
       maxPatternLength: 32,
@@ -64,20 +54,20 @@ document.getElementById("submitButton").addEventListener("click", event => {
     let fuse = new Fuse(currentSessionBills, options);
 
     results = fuse.search(searchTerms);
+    displayResults(results);
 
-    console.log("hello");
-    //TODO: modify with regex to account for spaces and obscure characters
-    // for (let i = 0; i < results.length; i++) {
-      // if (
-        // results[i].bill_id.replace(/[\s]/, "") ===
-          // searchTerms.replace(/[\W*_*]/gi, "") ||
-        // results[i].title.replace(/[\s]/, "") ===
-          // searchTerms.replace(/[\W*_*]/gi, "")
-      // ) {
-        displayResults(results);
-
-        return searchResults;
-    //  }
-  //  }
+    return searchResults;
   });
-});
+};
+
+let input = document.getElementById("billSearch");
+
+input.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    search(); 
+  }
+})
+
+
+
