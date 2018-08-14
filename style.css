@@ -7,7 +7,6 @@ body {
 
 .billDisplayWrapper {
   margin-top: 1em;
-  display: grid;
 }
 
 .billDisplay {
