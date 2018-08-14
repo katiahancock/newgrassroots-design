@@ -47,10 +47,14 @@ document.getElementById("submitButton").addEventListener("click", event => {
 
     // fuse.js specs
     const options = {
-      threshold: 0.3,
-      minMatchCharLength: 2,
       shouldSort: true,
-      findAllMatches: true,
+      tokenize: true,
+      distance: 50,
+      threshold: 0.5,
+      location: 0,
+      minMatchCharLength: 1,
+      maxPatternLength: 32,
+      shouldSort: true,
       keys: ["bill_id", "title"]
     };
 
