@@ -24,7 +24,7 @@ function displayResults(someResults) {
   for (let i = 0; i < results.length; i++) {
     let billLink = document.createElement("li");
     billLink.className = "listItem";
-    billMatch.appendChild(billLink).textContent = results[i].title;
+    billMatch.appendChild(billLink).textContent = (results[i].bill_id + ': ' + results[i].title);
   }
 
   let list = document.getElementsByClassName("listItem");
@@ -47,7 +47,7 @@ document.getElementById("submitButton").addEventListener("click", event => {
 
     // fuse.js specs
     const options = {
-      threshold: 0.5,
+      threshold: 0.3,
       minMatchCharLength: 2,
       shouldSort: true,
       findAllMatches: true,
@@ -63,17 +63,17 @@ document.getElementById("submitButton").addEventListener("click", event => {
 
     console.log("hello");
     //TODO: modify with regex to account for spaces and obscure characters
-    for (let i = 0; i < results.length; i++) {
-      if (
-        results[i].bill_id.replace(/[\s]/, "") ===
-          searchTerms.replace(/[\W*_*]/gi, "") ||
-        results[i].title.replace(/[\s]/, "") ===
-          searchTerms.replace(/[\W*_*]/gi, "")
-      ) {
-        displayResults(results[i]);
+    // for (let i = 0; i < results.length; i++) {
+      // if (
+        // results[i].bill_id.replace(/[\s]/, "") ===
+          // searchTerms.replace(/[\W*_*]/gi, "") ||
+        // results[i].title.replace(/[\s]/, "") ===
+          // searchTerms.replace(/[\W*_*]/gi, "")
+      // ) {
+        displayResults(results);
 
         return searchResults;
-      }
-    }
+    //  }
+  //  }
   });
 });
