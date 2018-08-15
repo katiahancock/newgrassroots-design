@@ -40,6 +40,7 @@ function secondFetch(billId) {
     <div className="bill-parent">
       <h1 className="bill-id-details">${result.bill_id}</h1>
       <h3 className="bill-title-details">${result.title}</h3>
+      <ul className="bill-actions">${result.actions.map(x => `<li>${x.action}</li>`).reverse().join('')}<ul>
     </div>
     `;
       const thisBill = document.getElementById("billDisplay");
