@@ -13,7 +13,7 @@ function getAllBills() {
 function displayResults(results) {
 
   for (let i = 0; i < results.length; i++) {
-    
+
     let x = results[i];
     const content = `
     <div className="billcard" data-bill-id=${x.id}>
@@ -34,9 +34,17 @@ function secondFetch(billId) {
   fetch(`https://openstates.org/api/v1/bills/${billId}/?apikey=2a939a8d-1448-4810-b036-79139a6a7f33&format=json`)
     .then(res => res.json())
     .then(result => {
-        console.log(result);
-        console.log('DONE');
-      }
+      console.log(result);
+      document.getElementById("billDisplay").textContent = "";
+      const billContent = `
+    <div className="bill-parent">
+      <h1 className="bill-id-details">${result.bill_id}</h1>
+      <h3 className="bill-title-details">${result.title}</h3>
+    </div>
+    `;
+      const thisBill = document.getElementById("billDisplay");
+      thisBill.innerHTML = billContent;
+    }
     );
 }
 
@@ -45,7 +53,13 @@ function getBillDetails(event) {
   let parent = element.parentElement;
   console.log(parent.dataset.billId);
   secondFetch(parent.dataset.billId);
- }
+}
+
+function displayBillDetails() {
+  secondFetch().then(result => {
+    
+  })
+}
 
 //User search for bills
 function search() {
