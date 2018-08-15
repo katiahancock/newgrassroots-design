@@ -15,7 +15,7 @@ function displayResults(someResults) {
     <div className="billcard">
       <h1 className="card-bill-id">${results[i].bill_id}</h1>
       <h3 className="bill-type">${results[i].title}</h3>
-      <button className="bill-details">Click for More Info</button>
+      <button className="bill-details">Bill Details</button>
     </div>
     `;
     const element = document.createElement("div");
@@ -34,12 +34,12 @@ function search() {
     // fuse.js specs
     const options = {
       shouldSort: true,
-      // tokenize: true,
-      distance: 50,
+      tokenize: true,
+      // distance: 50,
       threshold: 0.4,
-      location: 0,
-      minMatchCharLength: 1,
-      maxPatternLength: 32,
+      // location: 0,
+      // minMatchCharLength: 1,
+      // maxPatternLength: 32,
       keys: ["bill_id", "title"]
     };
 
