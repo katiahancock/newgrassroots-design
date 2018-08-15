@@ -9,23 +9,19 @@ function getAllBills() {
 }
 
 function displayResults(someResults) {
-  let billMatch = document.getElementById("billDisplay");
 
   for (let i = 0; i < results.length; i++) {
-    let billLink = document.createElement("li");
-    billLink.className = "listItem";
-    billMatch.appendChild(billLink).textContent = (results[i].bill_id + ': ' + results[i].title);
-  }
-
-  let list = document.getElementsByClassName("listItem");
-  console.log(list);
-  for (var i = 0; i < list.length; i++) {
-    var text = list[i].textContent;
-    list[i].textContent = "";
-    var a = document.createElement("a");
-    a.href = "#";
-    a.textContent = text;
-    list[i].appendChild(a);
+    const content = `
+    <div className="billcard">
+      <h1 className="card-bill-id">${results[i].bill_id}</h1>
+      <h3 className="bill-type">${results[i].title}</h3>
+      <button className="bill-details">Click for More Info</button>
+    </div>
+    `;
+    const element = document.createElement("div");
+    const allCards = document.getElementById("billDisplay");
+    element.innerHTML = content;
+    allCards.appendChild(element)
   }
 
   console.log(results);
@@ -44,7 +40,6 @@ function search() {
       location: 0,
       minMatchCharLength: 1,
       maxPatternLength: 32,
-      shouldSort: true,
       keys: ["bill_id", "title"]
     };
 
@@ -62,10 +57,10 @@ function search() {
 
 let input = document.getElementById("billSearch");
 
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
   event.preventDefault();
   if (event.keyCode === 13) {
-    search(); 
+    search();
   }
 })
 
