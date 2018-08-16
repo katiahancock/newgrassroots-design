@@ -15,6 +15,7 @@ function displayResults(results) {
   for (let i = 0; i < results.length; i++) {
 
     let x = results[i];
+    
     const content = `
     <div className="billcard" data-bill-id=${x.id}>
       <h1 className="card-bill-id">${x.bill_id}</h1>
@@ -36,15 +37,29 @@ function secondFetch(billId) {
     .then(result => {
       console.log(result);
       document.getElementById("billDisplay").textContent = "";
+      
       const billContent = `
     <div className="bill-parent">
       <h1 className="bill-id-details">${result.bill_id}</h1>
       <h3 className="bill-title-details">${result.title}</h3>
-      <ul className="bill-actions">${result.actions.map(x => `<li>${x.action}</li>`).reverse().join('')}<ul>
+      <h4 className="bill-sponsors-details">Sponsors: ${result.sponsors.map(x => `<i>${x.name}</i>`).join(', ')}</h4>
+      <table border=1 width=100%>
+        <tr>
+        <th width=15%>Date</th>
+        <th width=85%>Action</th>
+        </tr>
+        
+        <tr>
+         <td className="bill-actions-date">${result.actions.map(x => `<tr><td>${x.date}</td> <td>${x.action}</td></tr>`).reverse().join('')}</td>
+         
+         </tr>
+      
+      </table>  
     </div>
     `;
       const thisBill = document.getElementById("billDisplay");
       thisBill.innerHTML = billContent;
+      // let humanDate = new Date(x.date)
     }
     );
 }
@@ -54,12 +69,6 @@ function getBillDetails(event) {
   let parent = element.parentElement;
   console.log(parent.dataset.billId);
   secondFetch(parent.dataset.billId);
-}
-
-function displayBillDetails() {
-  secondFetch().then(result => {
-    
-  })
 }
 
 //User search for bills
