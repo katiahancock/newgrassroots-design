@@ -1,3 +1,5 @@
+
+
 let searchResults;
 
 function getAllBills() {
@@ -50,7 +52,7 @@ function secondFetch(billId) {
         </tr>
         
         <tr>
-         <td className="bill-actions-date">${result.actions.map(x => `<tr><td>${x.date}</td> <td>${x.action}</td></tr>`).reverse().join('')}</td>
+         <td className="bill-actions-date">${result.actions.map(x => `<tr><td>${moment(x.date).format("MMMM Do, YYYY")}</td> <td>${x.action}</td></tr>`).reverse().join('')}</td>
          
          </tr>
       
@@ -59,7 +61,6 @@ function secondFetch(billId) {
     `;
       const thisBill = document.getElementById("billDisplay");
       thisBill.innerHTML = billContent;
-      // let humanDate = new Date(x.date)
     }
     );
 }
