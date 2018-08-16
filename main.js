@@ -1,5 +1,3 @@
-
-
 let searchResults;
 
 function getAllBills() {
@@ -44,18 +42,15 @@ function secondFetch(billId) {
     <div className="bill-parent">
       <h1 className="bill-id-details">${result.bill_id}</h1>
       <h3 className="bill-title-details">${result.title}</h3>
-      <h4 className="bill-sponsors-details">Sponsors: ${result.sponsors.map(x => `<i>${x.name}</i>`).join(', ')}</h4>
+      <h4 className="bill-sponsors-details">Sponsors: ${result.sponsors.map(x => `<i>${legislatorFetch(x.leg_id)}</i>`).join(', ')}</h4>
       <table border=1 width=100%>
         <tr>
         <th width=15%>Date</th>
         <th width=85%>Action</th>
         </tr>
-        
         <tr>
          <td className="bill-actions-date">${result.actions.map(x => `<tr><td>${moment(x.date).format("MMMM Do, YYYY")}</td> <td>${x.action}</td></tr>`).reverse().join('')}</td>
-         
          </tr>
-      
       </table>  
     </div>
     `;
@@ -64,6 +59,19 @@ function secondFetch(billId) {
     }
     );
 }
+
+function legislatorFetch(legislatorId) {
+  return fetch(`https://openstates.org/api/v1/legislators/${legislatorId}/?apikey=2a939a8d-1448-4810-b036-79139a6a7f33&format=json`)
+  .then(response => {
+      return response.json();
+  }).then(result => {
+    console.log(result);
+    console.log(result.full_name);
+    console.log(result.district);
+    return result.full_name;
+  });
+}
+
 
 function getBillDetails(event) {
   let element = event.target;
