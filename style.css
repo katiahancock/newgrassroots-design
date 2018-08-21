@@ -40,17 +40,31 @@ form {
     width: 100%;
 }
 
-#its-search-result-time {
-}
-
 #its-card-time {
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
-    padding-bottom: 5px
+    padding-bottom: 5px;
+    height: 325px;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.card-content {
+    overflow-y: scroll;
+}
+
+#its-readmore-time {
+    margin-top: 10px;
 }
 
 #its-footer-time {
     background-color: #8daf8d;
     color: white;
+}
+
+#its-mailing-list-time {
+    max-width: 200px;
 }
