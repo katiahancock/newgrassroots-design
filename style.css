@@ -65,6 +65,14 @@ form {
     color: white;
 }
 
+ul {
+    list-style: none;
+}
+
+#its-learn-time a {
+    color: white;
+}
+
 #its-mailing-list-time {
     max-width: 200px;
 }
